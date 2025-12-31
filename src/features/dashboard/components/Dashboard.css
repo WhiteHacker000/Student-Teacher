@@ -1,0 +1,35 @@
+/* --- Recent Activity Block --- */
+.recent-activity {
+  margin-top: 32px;
+}
+
+.recent-activity__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.recent-activity__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 12px;
+  background: var(--muted);
+  border-radius: 8px;
+  border-left: 3px solid var(--primary);
+}
+
+.recent-activity__time {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b7280;
+  min-width: 60px;
+}
+
+.recent-activity__text {
+  font-size: 14px;
+  color: var(--foreground);
+  margin: 0;
+}

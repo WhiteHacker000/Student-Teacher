@@ -1,0 +1,12 @@
+@import '../../../styles/shared/search.css';
+
+.student-search-wrapper {
+  flex: 1;
+  min-width: 250px;
+}
+
+@media (max-width: 768px) {
+  .student-search-wrapper {
+    min-width: auto;
+  }
+}

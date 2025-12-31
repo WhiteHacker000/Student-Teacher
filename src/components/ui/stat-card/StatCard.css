@@ -1,0 +1,21 @@
+@import '../../../styles/shared/card.css';
+
+.stat-card {
+  height: 100%;
+}
+
+.stat-card__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  margin: 0 0 12px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-card__value {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--foreground);
+  margin: 0;
+}

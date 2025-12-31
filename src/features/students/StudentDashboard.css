@@ -1,0 +1,178 @@
+/* --- Student Dashboard Block --- */
+.student-dashboard {
+  padding: 40px;
+  background: var(--background);
+  min-height: 100%;
+}
+
+.student-dashboard__header {
+  margin-bottom: 48px;
+}
+
+.student-dashboard__title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+}
+
+.student-dashboard__subtitle {
+  font-size: 15px;
+  color: var(--muted-foreground);
+  margin: 0;
+}
+
+/* Quick Stats Section */
+.student-dashboard__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+/* Stat Box Element/Sub-block */
+.student-dashboard__stat-box {
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  border: 1px solid var(--border);
+  cursor: default;
+}
+
+.student-dashboard__stat-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.student-dashboard__stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  flex-shrink: 0;
+  background-color: var(--bg-color);
+  color: var(--icon-color);
+}
+
+.student-dashboard__stat-content {
+  flex: 1;
+}
+
+.student-dashboard__stat-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--muted-foreground);
+  margin: 0 0 6px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.student-dashboard__stat-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+
+/* Dashboard Sections */
+.student-dashboard__section {
+  margin-bottom: 32px;
+}
+
+.student-dashboard__section-header {
+  margin-bottom: 20px;
+}
+
+.student-dashboard__section-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 6px 0;
+}
+
+.student-dashboard__section-subtitle {
+  font-size: 14px;
+  color: var(--muted-foreground);
+  margin: 0;
+}
+
+/* Courses Grid */
+.student-dashboard__courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* Assignments Container */
+.student-dashboard__assignments {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Empty State */
+.student-dashboard__empty {
+  background: white;
+  border-radius: 12px;
+  padding: 48px 24px;
+  text-align: center;
+  color: var(--muted-foreground);
+  font-size: 15px;
+  border: 1px dashed var(--border);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 1024px) {
+  .student-dashboard__courses-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+
+  .student-dashboard__stats {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .student-dashboard {
+    padding: 20px;
+  }
+
+  .student-dashboard__header {
+    margin-bottom: 24px;
+  }
+
+  .student-dashboard__title {
+    font-size: 24px;
+  }
+
+  .student-dashboard__stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .student-dashboard__stat-box {
+    padding: 16px;
+  }
+
+  .student-dashboard__stat-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .student-dashboard__stat-value {
+    font-size: 20px;
+  }
+
+  .student-dashboard__courses-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,18 @@
+@import '../../../styles/shared/card.css';
+
+.summary-card {
+  height: 100%;
+}
+
+.card__trend {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+}
+
+.card__icon-wrapper {
+  background-color: var(--accent-light, #f3f4f6);
+}

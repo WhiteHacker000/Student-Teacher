@@ -1,0 +1,56 @@
+.table-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.action-btn {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1.5px solid #e5e7eb;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.action-btn:hover {
+  border-color: #667eea;
+  background-color: #f5f7ff;
+  transform: translateY(-2px);
+}
+
+.action-btn.view-btn:hover {
+  border-color: #4facfe;
+}
+
+.action-btn.edit-btn:hover {
+  border-color: #764ba2;
+}
+
+.action-btn.delete-btn:hover {
+  border-color: #ef4444;
+}
+
+.action-btn:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .action-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .table-actions {
+    gap: 4px;
+  }
+}

@@ -1,0 +1,194 @@
+/* --- Teacher Dashboard Block --- */
+.teacher-dashboard {
+  padding: 40px;
+  background: var(--background);
+  min-height: 100%;
+}
+
+.teacher-dashboard__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 48px;
+  gap: 16px;
+}
+
+.teacher-dashboard__page-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 8px 0;
+}
+
+.teacher-dashboard__page-subtitle {
+  font-size: 15px;
+  color: var(--muted-foreground);
+  margin: 0;
+}
+
+.teacher-dashboard__section {
+  margin-bottom: 32px;
+}
+
+.teacher-dashboard__section-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 20px 0;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--border);
+}
+
+.teacher-dashboard__courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.teacher-dashboard__details-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding: 16px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+
+.teacher-dashboard__details-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+/* --- Assignments List (Element of Teacher Dashboard) --- */
+.teacher-dashboard__assignments-list {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  padding: 0;
+}
+
+.teacher-dashboard__assignment {
+  padding: 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  transition: background-color 0.2s ease;
+}
+
+.teacher-dashboard__assignment:hover {
+  background-color: var(--muted);
+}
+
+.teacher-dashboard__assignment:last-child {
+  border-bottom: none;
+}
+
+.teacher-dashboard__assignment-info {
+  flex: 1;
+}
+
+.teacher-dashboard__assignment-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 6px 0;
+}
+
+.teacher-dashboard__assignment-course {
+  font-size: 13px;
+  color: var(--primary);
+  font-weight: 500;
+  margin: 0 0 8px 0;
+}
+
+.teacher-dashboard__assignment-description {
+  font-size: 14px;
+  color: var(--muted-foreground);
+  margin: 0;
+}
+
+.teacher-dashboard__assignment-meta {
+  display: flex;
+  gap: 24px;
+  min-width: 200px;
+}
+
+.teacher-dashboard__meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.teacher-dashboard__meta-label {
+  font-size: 12px;
+  color: #9ca3af;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.teacher-dashboard__meta-value {
+  font-size: 14px;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+.teacher-dashboard__empty-message {
+  padding: 32px;
+  text-align: center;
+  color: #9ca3af;
+  font-size: 15px;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 1024px) {
+  .teacher-dashboard__courses-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+
+  .teacher-dashboard__assignment {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .teacher-dashboard__assignment-meta {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .teacher-dashboard {
+    padding: 20px;
+  }
+
+  .teacher-dashboard__header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .teacher-dashboard__page-title {
+    font-size: 24px;
+  }
+
+  .teacher-dashboard__courses-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .teacher-dashboard__details-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .teacher-dashboard__assignment-meta {
+    flex-direction: column;
+    gap: 12px;
+  }
+}

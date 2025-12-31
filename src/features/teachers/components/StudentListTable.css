@@ -1,0 +1,142 @@
+.student-list-table {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+
+.table-header-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.table-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+}
+
+.student-count {
+  font-size: 13px;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+}
+
+.students-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.students-table thead {
+  background-color: #f9fafb;
+  border-bottom: 1px solid var(--border);
+}
+
+.students-table th {
+  padding: 12px 24px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.students-table th.text-center {
+  text-align: center;
+}
+
+.students-table td {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--border);
+  color: #374151;
+}
+
+.students-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+.roll-number {
+  font-size: 13px;
+  color: #9ca3af;
+  font-weight: 600;
+  min-width: 50px;
+}
+
+.student-name {
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.student-email {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.attendance-col {
+  text-align: center;
+}
+
+.attendance-bar {
+  position: relative;
+  height: 24px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.attendance-fill {
+  height: 100%;
+  background: var(--color-success);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+  width: var(--attendance-width);
+}
+
+.attendance-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 32px 24px !important;
+  color: #9ca3af;
+  font-size: 15px;
+}
+
+@media (max-width: 768px) {
+
+  .students-table th,
+  .students-table td {
+    padding: 12px 16px;
+    font-size: 13px;
+  }
+
+  .table-header-section {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .students-table th.text-center,
+  .students-table td.attendance-col {
+    text-align: left;
+  }
+}

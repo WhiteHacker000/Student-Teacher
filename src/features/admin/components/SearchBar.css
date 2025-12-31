@@ -1,0 +1,12 @@
+@import '../../../styles/shared/search.css';
+
+.search-bar-wrapper {
+  flex: 1;
+  min-width: 250px;
+}
+
+@media (max-width: 768px) {
+  .search-bar-wrapper {
+    min-width: auto;
+  }
+}

@@ -1,0 +1,84 @@
+/* --- Card Block --- */
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    box-shadow: var(--shadow-soft);
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.2s ease;
+}
+
+/* Subtle Top Border Accent - MERGED FIGMA PATTERN */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: var(--accent-color, var(--primary));
+}
+
+.card--clickable {
+    cursor: pointer;
+}
+
+.card--clickable:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+.card__icon-wrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.card__label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted-foreground);
+    margin: 0 0 8px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card__value {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--card-foreground);
+    margin: 0 0 4px 0;
+}
+
+.card__subtext {
+    font-size: 12px;
+    color: #9ca3af;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .card {
+        padding: 16px;
+    }
+
+    .card__icon-wrapper {
+        width: 40px;
+        height: 40px;
+    }
+
+    .card__value {
+        font-size: 24px;
+    }
+}
