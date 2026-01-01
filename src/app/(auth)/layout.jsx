@@ -11,10 +11,6 @@ export default function AuthLayout({
   children,
 }) {
   return (
-    <html lang="en">
-      <body>
-        <main className="auth-container">{children}</main>
-      </body>
-    </html>
+    <main className="auth-container">{children}</main>
   )
 }

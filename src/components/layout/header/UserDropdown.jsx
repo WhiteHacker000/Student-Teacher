@@ -1,7 +1,8 @@
 "use client"
+import { logoutAction } from "@/actions/auth"
 import "./UserDropdown.css"
 
-export default function UserDropdown({ onLogout, onClose }) {
+export default function UserDropdown({ onClose }) {
     return (
         <div className="header__dropdown">
             <button className="header__dropdown-item" onClick={() => alert("Profile clicked")}>
@@ -14,7 +15,7 @@ export default function UserDropdown({ onLogout, onClose }) {
             <button
                 className="header__dropdown-item header__dropdown-item--logout"
                 onClick={() => {
-                    onLogout()
+                    logoutAction()
                     onClose()
                 }}
             >

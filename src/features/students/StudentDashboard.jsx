@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { studentMockCourses as mockCourses, studentMockAssignments as initAssignments } from "@/lib/mockData"
 import StatsOverview from "./components/StatsOverview"
 import EnrolledCourseCard from "./components/EnrolledCourseCard"

@@ -1,12 +1,8 @@
 import "./Dashboard.css"
 import "./CoursesSection.css"
 
-export default function CoursesSection() {
-  const courses = [
-    { id: "1", name: "Mathematics 101", instructor: "Mr. Smith", students: 45, status: "Active" },
-    { id: "2", name: "English Literature", instructor: "Mrs. Johnson", students: 32, status: "Active" },
-    { id: "3", name: "Physics 102", instructor: "Dr. Wilson", students: 38, status: "Completed" },
-  ]
+export default function CoursesSection({ data = [] }) {
+  const courses = data
 
   return (
     <div className="section">
@@ -27,20 +23,28 @@ export default function CoursesSection() {
             </tr>
           </thead>
           <tbody>
-            {courses.map((course) => (
-              <tr key={course.id}>
-                <td>{course.name}</td>
-                <td>{course.instructor}</td>
-                <td>{course.students}</td>
-                <td>
-                  <span className={`badge badge--${course.status.toLowerCase()}`}>{course.status}</span>
-                </td>
-                <td>
-                  <button className="btn btn--small btn--secondary">Edit</button>
-                  <button className="btn btn--small btn--danger">Delete</button>
+            {courses.length > 0 ? (
+              courses.map((course) => (
+                <tr key={course.id}>
+                  <td>{course.name}</td>
+                  <td>{course.teacher?.user?.name || "N/A"}</td>
+                  <td>{course._count?.students || 0}</td>
+                  <td>
+                    <span className="badge badge--active">Active</span>
+                  </td>
+                  <td>
+                    <button className="btn btn--small btn--secondary">Edit</button>
+                    <button className="btn btn--small btn--danger">Delete</button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5" style={{ textAlign: "center", padding: "20px" }}>
+                  No courses found.
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>

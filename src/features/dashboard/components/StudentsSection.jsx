@@ -1,13 +1,8 @@
 import "./Dashboard.css"
 import "./StudentsSection.css"
 
-export default function StudentsSection() {
-  const students = [
-    { id: "1", name: "Alice Johnson", email: "alice@school.com", grade: "10-A", status: "Active" },
-    { id: "2", name: "Bob Wilson", email: "bob@school.com", grade: "10-B", status: "Active" },
-    { id: "3", name: "Carol Davis", email: "carol@school.com", grade: "11-A", status: "Active" },
-    { id: "4", name: "David Brown", email: "david@school.com", grade: "9-A", status: "Inactive" },
-  ]
+export default function StudentsSection({ data = [] }) {
+  const students = data
 
   return (
     <div className="section">
@@ -28,20 +23,28 @@ export default function StudentsSection() {
             </tr>
           </thead>
           <tbody>
-            {students.map((student) => (
-              <tr key={student.id}>
-                <td>{student.name}</td>
-                <td>{student.email}</td>
-                <td>{student.grade}</td>
-                <td>
-                  <span className={`badge badge--${student.status.toLowerCase()}`}>{student.status}</span>
-                </td>
-                <td>
-                  <button className="btn btn--small btn--secondary">Edit</button>
-                  <button className="btn btn--small btn--danger">Delete</button>
+            {students.length > 0 ? (
+              students.map((student) => (
+                <tr key={student.id}>
+                  <td>{student.user.name}</td>
+                  <td>{student.user.email}</td>
+                  <td>{student.grade}</td>
+                  <td>
+                    <span className="badge badge--active">Active</span>
+                  </td>
+                  <td>
+                    <button className="btn btn--small btn--secondary">Edit</button>
+                    <button className="btn btn--small btn--danger">Delete</button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5" style={{ textAlign: "center", padding: "20px" }}>
+                  No students found.
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>

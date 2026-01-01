@@ -6,14 +6,12 @@ import Header from "@/components/layout/header/Header"
 import MainContent from "@/components/layout/content/MainContent"
 import "./DashboardLayout.css"
 
-export default function DashboardLayout() {
+export default function DashboardLayout({ user, stats, students, teachers }) {
   const [sidebarOpen, setSidebarOpen] = useState(true)
+  const initialSection = user.role === "ADMIN" ? "dashboard" :
+    user.role === "TEACHER" ? "dashboard" :
+      "dashboard" // Default everyone to dashboard for now, or specific view
   const [activeSection, setActiveSection] = useState("dashboard")
-  const [user] = useState({
-    name: "John Doe",
-    role: "Administrator",
-    avatar: "JD",
-  })
 
   const handleLogout = () => {
     alert("User logged out successfully!")
@@ -29,7 +27,13 @@ export default function DashboardLayout() {
           onToggleSidebar={() => setSidebarOpen(!sidebarOpen)}
           sidebarOpen={sidebarOpen}
         />
-        <MainContent activeSection={activeSection} />
+        <MainContent
+          activeSection={activeSection}
+          role={user.role}
+          stats={stats}
+          students={students}
+          teachers={teachers}
+        />
       </div>
     </div>
   )

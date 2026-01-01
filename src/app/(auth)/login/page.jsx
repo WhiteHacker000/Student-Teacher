@@ -1,126 +1,62 @@
 "use client"
 
-import { useState } from "react"
+import { useActionState } from "react"
 import Link from "next/link"
+import { login } from "@/actions/auth"
 import "./page.css"
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [errors, setErrors] = useState({})
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [successMessage, setSuccessMessage] = useState("")
-
-  const validateForm = () => {
-    const newErrors = {}
-
-    // Email validation
-    if (!email.trim()) {
-      newErrors.email = "Email is required"
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      newErrors.email = "Please enter a valid email address"
-    }
-
-    // Password validation
-    if (!password) {
-      newErrors.password = "Password is required"
-    } else if (password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters"
-    }
-
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setSuccessMessage("")
-
-    if (!validateForm()) {
-      return
-    }
-
-    setIsSubmitting(true)
-
-    // Simulate API call
-    setTimeout(() => {
-      setSuccessMessage("Login successful! Redirecting to dashboard...")
-      console.log("Login submitted:", { email, password })
-      setIsSubmitting(false)
-
-      // Simulate redirect
-      setTimeout(() => {
-        // window.location.href = '/dashboard'
-      }, 1500)
-    }, 1000)
-  }
+  const [state, formAction, isPending] = useActionState(login, {})
 
   return (
     <div className="auth-card">
       <div className="auth-header">
         <h1>Welcome Back</h1>
-        <p>Sign in to your account to continue managing your classes</p>
+        <p>Enter your credentials to access your account</p>
       </div>
 
-      <form onSubmit={handleSubmit} noValidate>
+      <form action={formAction} noValidate>
         {/* Email Field */}
-        <div className={`form-group ${errors.email ? "error" : ""}`}>
+        <div className="form-group">
           <label htmlFor="email">Email Address</label>
           <input
             type="email"
             id="email"
-            value={email}
-            onChange={(e) => {
-              setEmail(e.target.value)
-              if (errors.email) {
-                setErrors({ ...errors, email: "" })
-              }
-            }}
+            name="email"
             placeholder="you@example.com"
-            disabled={isSubmitting}
+            required
+            disabled={isPending}
           />
-          {errors.email && <span className="error-message show">{errors.email}</span>}
         </div>
 
         {/* Password Field */}
-        <div className={`form-group ${errors.password ? "error" : ""}`}>
+        <div className="form-group">
           <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value)
-              if (errors.password) {
-                setErrors({ ...errors, password: "" })
-              }
-            }}
+            name="password"
             placeholder="••••••••"
-            disabled={isSubmitting}
+            required
+            disabled={isPending}
           />
-          {errors.password && <span className="error-message show">{errors.password}</span>}
         </div>
 
-        {/* Form Error Message */}
-        {errors.form && (
-          <div className="error-message show">{errors.form}</div>
-        )}
-
-        {/* Success Message */}
-        {successMessage && (
-          <div className="success-message show">{successMessage}</div>
+        {/* Server Error Message */}
+        {state?.error && (
+          <div className="error-message show">{state.error}</div>
         )}
 
         {/* Submit Button */}
-        <button type="submit" className="btn btn--primary" disabled={isSubmitting}>
-          {isSubmitting ? "Signing In..." : "Sign In"}
+        <button type="submit" className="btn btn--primary" disabled={isPending}>
+          {isPending ? "Signing in..." : "Sign In"}
         </button>
       </form>
 
       {/* Footer Link */}
       <div className="auth-footer">
         <p>
-          Don't have an account? <Link href="/signup">Create one here</Link>
+          Don't have an account? <Link href="/signup">Create account</Link>
         </p>
       </div>
     </div>

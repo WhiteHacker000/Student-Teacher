@@ -160,7 +160,7 @@ a {
   padding: 16px;
   text-align: left;
   font-weight: 600;
-  color: #374151;
+  color: var(--muted-foreground);
 }
 
 .data-table td {

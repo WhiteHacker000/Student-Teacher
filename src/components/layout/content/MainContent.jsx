@@ -6,21 +6,21 @@ import AttendanceSection from "@/features/dashboard/components/AttendanceSection
 import AssignmentsSection from "@/features/dashboard/components/AssignmentsSection"
 import "./MainContent.css"
 
-export default function MainContent({ activeSection }) {
+export default function MainContent({ activeSection, role, stats, students, teachers, courses, attendance, assignments, recentActivity }) {
   const renderSection = () => {
     switch (activeSection) {
       case "dashboard":
-        return <DashboardSection />
+        return <DashboardSection stats={stats} recentActivity={recentActivity} />
       case "students":
-        return <StudentsSection />
+        return <StudentsSection data={students} />
       case "teachers":
-        return <TeachersSection />
+        return <TeachersSection data={teachers} />
       case "courses":
-        return <CoursesSection />
+        return <CoursesSection data={courses} />
       case "attendance":
-        return <AttendanceSection />
+        return <AttendanceSection data={attendance} />
       case "assignments":
-        return <AssignmentsSection />
+        return <AssignmentsSection data={assignments} />
       default:
         return <DashboardSection />
     }

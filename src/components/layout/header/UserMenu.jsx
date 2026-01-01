@@ -9,6 +9,16 @@ export default function UserMenu({ user, onLogout }) {
 
     const toggleDropdown = () => setDropdownOpen(!dropdownOpen)
 
+    const getInitials = (name) => {
+        if (!name) return "U"
+        return name
+            .split(" ")
+            .map((n) => n[0])
+            .join("")
+            .toUpperCase()
+            .slice(0, 2)
+    }
+
     return (
         <div className="header__user">
             <button
@@ -17,7 +27,7 @@ export default function UserMenu({ user, onLogout }) {
                 aria-expanded={dropdownOpen}
                 aria-label="User menu"
             >
-                <div className="header__avatar">{user.avatar}</div>
+                <div className="header__avatar">{getInitials(user.name)}</div>
                 <div className="header__user-info">
                     <p className="header__user-name">{user.name}</p>
                     <p className="header__user-role">{user.role}</p>
@@ -25,7 +35,7 @@ export default function UserMenu({ user, onLogout }) {
                 <span className="header__dropdown-icon">▼</span>
             </button>
 
-            {dropdownOpen && <UserDropdown onLogout={onLogout} onClose={() => setDropdownOpen(false)} />}
+            {dropdownOpen && <UserDropdown onClose={() => setDropdownOpen(false)} />}
         </div>
     )
 }

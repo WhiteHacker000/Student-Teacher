@@ -1,12 +1,8 @@
 import "./Dashboard.css"
 import "./TeachersSection.css"
 
-export default function TeachersSection() {
-  const teachers = [
-    { id: "1", name: "Mr. Smith", email: "smith@school.com", department: "Mathematics", courses: 3 },
-    { id: "2", name: "Mrs. Johnson", email: "johnson@school.com", department: "English", courses: 2 },
-    { id: "3", name: "Dr. Wilson", email: "wilson@school.com", department: "Science", courses: 4 },
-  ]
+export default function TeachersSection({ data = [] }) {
+  const teachers = data
 
   return (
     <div className="section">
@@ -27,18 +23,26 @@ export default function TeachersSection() {
             </tr>
           </thead>
           <tbody>
-            {teachers.map((teacher) => (
-              <tr key={teacher.id}>
-                <td>{teacher.name}</td>
-                <td>{teacher.email}</td>
-                <td>{teacher.department}</td>
-                <td>{teacher.courses}</td>
-                <td>
-                  <button className="btn btn--small btn--secondary">Edit</button>
-                  <button className="btn btn--small btn--danger">Delete</button>
+            {teachers.length > 0 ? (
+              teachers.map((teacher) => (
+                <tr key={teacher.id}>
+                  <td>{teacher.user.name}</td>
+                  <td>{teacher.user.email}</td>
+                  <td>{teacher.department}</td>
+                  <td>{teacher._count?.courses || 0}</td>
+                  <td>
+                    <button className="btn btn--small btn--secondary">Edit</button>
+                    <button className="btn btn--small btn--danger">Delete</button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5" style={{ textAlign: "center", padding: "20px" }}>
+                  No teachers found.
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>

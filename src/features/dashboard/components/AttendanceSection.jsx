@@ -1,13 +1,8 @@
 import "./Dashboard.css"
 import "./AttendanceSection.css"
 
-export default function AttendanceSection() {
-  const records = [
-    { id: "1", student: "Alice Johnson", date: "Dec 20, 2024", status: "Present" },
-    { id: "2", student: "Bob Wilson", date: "Dec 20, 2024", status: "Present" },
-    { id: "3", student: "Carol Davis", date: "Dec 20, 2024", status: "Absent" },
-    { id: "4", student: "David Brown", date: "Dec 20, 2024", status: "Late" },
-  ]
+export default function AttendanceSection({ data = [] }) {
+  const records = data
 
   return (
     <div className="section">
@@ -27,18 +22,26 @@ export default function AttendanceSection() {
             </tr>
           </thead>
           <tbody>
-            {records.map((record) => (
-              <tr key={record.id}>
-                <td>{record.student}</td>
-                <td>{record.date}</td>
-                <td>
-                  <span className={`badge badge--${record.status.toLowerCase()}`}>{record.status}</span>
-                </td>
-                <td>
-                  <button className="btn btn--small btn--secondary">Edit</button>
+            {records.length > 0 ? (
+              records.map((record) => (
+                <tr key={record.id}>
+                  <td>{record.student?.user?.name || "Unknown"}</td>
+                  <td>{new Date(record.date).toLocaleDateString()}</td>
+                  <td>
+                    <span className={`badge badge--${record.status.toLowerCase()}`}>{record.status}</span>
+                  </td>
+                  <td>
+                    <button className="btn btn--small btn--secondary">Edit</button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="4" style={{ textAlign: "center", padding: "20px" }}>
+                  No attendance records found.
                 </td>
               </tr>
-            ))}
+            )}
           </tbody>
         </table>
       </div>

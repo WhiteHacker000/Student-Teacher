@@ -1,0 +1,147 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// User model for Authentication
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String   // In a real app, hash this!
+  name      String
+  role      Role     @default(STUDENT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Profile Relations
+  studentProfile Student?
+  teacherProfile Teacher?
+}
+
+// Student Profile
+model Student {
+  id         String   @id @default(uuid())
+  userId     String   @unique
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  grade      String
+  attendance Float    @default(100.0) // Overall attendance %
+  
+  // Relations
+  enrollments Enrollment[]
+  submissions Submission[]
+  attendanceRecords AttendanceRecord[]
+}
+
+// Teacher Profile
+model Teacher {
+  id         String   @id @default(uuid())
+  userId     String   @unique
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  department String
+  
+  // Relations
+  courses    Course[]
+}
+
+// Courses (Classes)
+model Course {
+  id          String   @id @default(uuid())
+  name        String
+  code        String   @unique // e.g., "CS101"
+  description String?
+  
+  teacherId   String
+  teacher     Teacher  @relation(fields: [teacherId], references: [id])
+  
+  // Relations
+  enrollments Enrollment[]
+  assignments Assignment[]
+  attendanceSessions AttendanceSession[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Enrollment (Student <-> Course)
+model Enrollment {
+  id        String   @id @default(uuid())
+  studentId String
+  courseId  String
+  
+  student   Student  @relation(fields: [studentId], references: [id])
+  course    Course   @relation(fields: [courseId], references: [id])
+  
+  enrolledAt DateTime @default(now())
+
+  @@unique([studentId, courseId]) // Prevent duplicate enrollment
+}
+
+// Assignments
+model Assignment {
+  id        String   @id @default(uuid())
+  title     String
+  courseId  String
+  course    Course   @relation(fields: [courseId], references: [id])
+  
+  dueDate   DateTime
+  
+  submissions Submission[]
+}
+
+// Submissions
+model Submission {
+  id           String   @id @default(uuid())
+  assignmentId String
+  studentId    String
+  
+  assignment   Assignment @relation(fields: [assignmentId], references: [id])
+  student      Student    @relation(fields: [studentId], references: [id])
+  
+  grade        Float?
+  submittedAt  DateTime @default(now())
+}
+
+// Attendance Session (A specific class date)
+model AttendanceSession {
+  id        String   @id @default(uuid())
+  courseId  String
+  course    Course   @relation(fields: [courseId], references: [id])
+  
+  date      DateTime @default(now())
+  
+  records   AttendanceRecord[]
+}
+
+// Individual Attendance Record
+model AttendanceRecord {
+  id        String   @id @default(uuid())
+  sessionId String
+  studentId String
+  
+  session   AttendanceSession @relation(fields: [sessionId], references: [id])
+  student   Student           @relation(fields: [studentId], references: [id])
+  
+  status    AttendanceStatus
+}
+
+enum Role {
+  ADMIN
+  TEACHER
+  STUDENT
+}
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
+  LATE
+  EXCUSED
+}
