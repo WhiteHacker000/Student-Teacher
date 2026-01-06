@@ -12,11 +12,12 @@
   z-index: 100;
 }
 
-/* Sidebar state modifier */
-.sidebar:not(.sidebar--open) {
+/* Sidebar closed state - use explicit class instead of :not() to prevent hydration flash */
+.sidebar--closed {
   width: 0;
   overflow: hidden;
 }
+
 
 /* Sidebar Elements */
 .sidebar__header {

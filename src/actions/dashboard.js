@@ -78,7 +78,7 @@ export async function getCourses() {
                     }
                 },
                 _count: {
-                    select: { students: true }
+                    select: { enrollments: true }
                 }
             }
         })
@@ -93,8 +93,11 @@ export async function getAttendance() {
     try {
         const attendance = await db.attendanceRecord.findMany({
             take: 20, // Limit to recent 20
-            orderBy: { date: 'desc' },
+            orderBy: { session: { date: 'desc' } },
             include: {
+                session: {
+                    select: { date: true }
+                },
                 student: {
                     include: {
                         user: { select: { name: true } }
@@ -109,6 +112,7 @@ export async function getAttendance() {
         return []
     }
 }
+
 
 export async function getAssignments() {
     try {
