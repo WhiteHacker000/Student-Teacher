@@ -4,6 +4,8 @@ import { getSession } from "@/lib/session"
 import { getAdminStats, getStudents, getTeachers, getCourses, getAttendance, getAssignments, getRecentActivity } from "@/actions/dashboard"
 import { redirect } from "next/navigation"
 
+export const dynamic = "force-dynamic"
+
 export const metadata = {
   title: "Student-Teacher Management System",
   description: "Manage students, teachers, courses, attendance, and assignments",
