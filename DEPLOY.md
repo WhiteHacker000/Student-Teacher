@@ -16,8 +16,12 @@ Vercel will automatically detect that this is a **Next.js** project.
 *   **Install Command**: `npm install` (Default)
 
 ## 3. Environment Variables
-Currently, your application **does not require any environment variables** to run.
-*   You can skip the "Environment Variables" section during deployment.
+You **must** configure the following environment variable in Vercel:
+*   **`DATABASE_URL`**: Your MySQL database connection string (e.g., from PlanetScale, Railway, or another MySQL provider).
+
+To add this:
+1.  In your Vercel project settings, go to **Settings** -> **Environment Variables**.
+2.  Add a new variable with the name `DATABASE_URL` and your database connection string as the value.
 
 ## 4. Deploy
 Click **"Deploy"**. Vercel will:
